@@ -7,16 +7,13 @@ export default function InterviewerList(props) {
 
   const interviewers = props.interviewers.map((interviewer) => {
 
-    let childrenSelected;
-    props.interviewer === interviewer.id ? childrenSelected = true : childrenSelected = false;
-
     return (
       <InterviewerListItem
         key ={interviewer.id}
         name ={interviewer.name}
         avatar ={interviewer.avatar}
-        selected ={childrenSelected}
-        setInterviewer ={() => props.setInterviewer(interviewer.id)}
+        selected ={props.value === interviewer.id}
+        setInterviewer ={() => props.onChange(interviewer.id)}
       />
     );
   });

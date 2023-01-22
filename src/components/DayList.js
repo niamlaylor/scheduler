@@ -4,8 +4,6 @@ import DayListItem from "./DayListItem";
 export default function DayList(props) {
 
   const days = props.days.map((day) => {
-    let childrenSelected;
-    props.day === day.name ? childrenSelected = true : childrenSelected = false;
 
     return (
       <DayListItem
@@ -13,8 +11,8 @@ export default function DayList(props) {
         id ={day.id}
         name ={day.name}
         spots ={day.spots}
-        selected ={childrenSelected}
-        setDay ={props.setDay}
+        selected ={day.name === props.value}
+        setDay ={props.onChange}
       />
     );
   });
