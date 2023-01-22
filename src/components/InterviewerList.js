@@ -10,16 +10,13 @@ export default function InterviewerList(props) {
     let childrenSelected;
     props.interviewer === interviewer.id ? childrenSelected = true : childrenSelected = false;
 
-    console.log('Props: ', props, 'Selected?: ', childrenSelected, interviewer.name)
-
     return (
       <InterviewerListItem
         key ={interviewer.id}
-        id ={interviewer.id}
         name ={interviewer.name}
         avatar ={interviewer.avatar}
         selected ={childrenSelected}
-        setInterviewer ={props.setInterviewer}
+        setInterviewer ={() => props.setInterviewer(interviewer.id)}
       />
     );
   });
