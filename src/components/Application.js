@@ -15,13 +15,13 @@ export default function Application(props) {
     interviewers: {}
   });
 
-  const dailyAppointments = getAppointmentsForDay(state, state.day);
-
   const setDay = day => setState({ ...state, day });
 
+  // This is our list of appointments for the current day in state
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
+  // schedule is an array of Appointment components
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
-
     return (
       <Appointment 
         key={appointment.id}
@@ -32,6 +32,7 @@ export default function Application(props) {
     )
   });
 
+  // Async api calls
   useEffect(() => {
     Promise.all([
       axios.get('/api/days'),
