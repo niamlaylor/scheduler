@@ -18,6 +18,27 @@ export function getAppointmentsForDay(state, day) {
   };
 };
 
+
+export function getInterviewersForDay(state, day) {
+
+  const interviewers = [];
+
+  if (state.days.length === 0) {
+    return interviewers;
+  }
+
+  const filteredDays = state.days.filter(d => d.name === day);
+
+  if (filteredDays.length === 0) {
+    return interviewers;
+  } else {
+    for (const interviewer of filteredDays[0].interviewers) {
+      interviewers.push(state.interviewers[interviewer])
+    };
+  };
+  return interviewers;
+};
+
 /*
 This function will return an object that contains the interview 
 data if it is passed an object that contains an interviewer.
