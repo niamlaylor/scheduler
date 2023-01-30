@@ -12,7 +12,7 @@ export default function Form(props) {
     setStudent("");
     setInterviewer(null);
   };
-
+  // Called below onClick of the cancel button
   const cancel = () => {
     reset();
     props.onCancel();
