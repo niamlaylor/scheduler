@@ -7,10 +7,9 @@ export function getAppointmentsForDay(state, day) {
   };
 
   let appointmentsOnDay = state.days.filter(d => d.name === day);
-  
+
   if (appointmentsOnDay.length === 0) {
     return appointments;
-
   } else {
     appointmentsOnDay = state.days.filter(d => d.name === day)[0].appointments;
     appointmentsOnDay.forEach((appointment) => {
@@ -31,14 +30,15 @@ export function getInterviewersForDay(state, day) {
     return interviewers;
   }
 
-  const filteredDays = state.days.filter(d => d.name === day);
+  let interviewersOnDay = state.days.filter(d => d.name === day);
 
-  if (filteredDays.length === 0) {
+  if (interviewersOnDay.length === 0) {
     return interviewers;
   } else {
-    for (const interviewer of filteredDays[0].interviewers) {
+    interviewersOnDay = state.days.filter(d => d.name === day)[0].interviewers;
+    interviewersOnDay.forEach((interviewer) => {
       interviewers.push(state.interviewers[interviewer])
-    };
+    })
   };
   return interviewers;
 };
