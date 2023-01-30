@@ -1,20 +1,24 @@
-import { getMatchingAppointments } from "./selectorsHelpers";
-
 export function getAppointmentsForDay(state, day) {
 
-  const appointmentDetails = [];
+  const appointments = [];
 
   if (state.days.length === 0) {
-    return appointmentDetails;
+    return appointments;
   };
 
-  const filteredDays = state.days.filter(d => d.name === day);
+  let appointmentsOnDay = state.days.filter(d => d.name === day);
+  
+  if (appointmentsOnDay.length === 0) {
+    return appointments;
 
-  if (filteredDays.length === 0) {
-    return appointmentDetails;
   } else {
-    // This helper loops the state.appointments and pushes matches to appointmentDetails
-    return getMatchingAppointments(appointmentDetails, filteredDays[0].appointments, state.appointments);
+    appointmentsOnDay = state.days.filter(d => d.name === day)[0].appointments;
+    appointmentsOnDay.forEach((appointment) => {
+      if (state.appointments[appointment]) {
+        appointments.push(state.appointments[appointment]);
+      };
+    });
+    return appointments;
   };
 };
 
