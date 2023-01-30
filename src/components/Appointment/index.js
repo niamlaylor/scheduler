@@ -9,6 +9,7 @@ import "components/Appointment/styles.scss";
 
 export default function Appointment(props) {
 
+  // See hooks/useVisualMode.js for how these constants are used in custom hook
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";

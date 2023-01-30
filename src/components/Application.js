@@ -8,6 +8,7 @@ import { getAppointmentsForDay, getInterviewersForDay, getInterview } from "help
 
 export default function Application(props) {
 
+  // Will always default to Monday selected on page load
   const [state, setState] = useState({
     day: 'Monday',
     days: [],
