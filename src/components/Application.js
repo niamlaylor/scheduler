@@ -33,8 +33,8 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-    axios.put(`/api/appointments/${id}`, { ...appointment })
-    .then(setState({ ...state, appointments }))
+    return axios.put(`/api/appointments/${id}`, { ...appointment })
+    .then(() => setState({ ...state, appointments }))
     .catch((response) => {
       console.log('There was an error with the put request: ', response);
     })
