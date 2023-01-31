@@ -18,8 +18,31 @@ export default function Application(props) {
 
   const setDay = day => setState({ ...state, day });
 
+
+  /*
+  bookInterview is passed down to the Appointment index.js then is called within save(), 
+  which is then passed down to Form.js. The form captures the name and interviewer and passes
+  them to save() as arguments, which then updates state at the application level.
+  */
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    axios.put(`/api/appointments/${id}`, { ...appointment })
+    .then(setState({ ...state, appointments }))
+    .catch((response) => {
+      console.log('There was an error with the put request: ', response);
+    })
+  };
+
   // This is our list of appointments for the current day in state
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+  // This is our list of interviewers for the current day in state
   const dailyInterviewers = getInterviewersForDay(state, state.day);
 
   // schedule is an array of Appointment components
@@ -32,6 +55,7 @@ export default function Application(props) {
         time={appointment.time}
         interview={interview}
         interviewers={dailyInterviewers}
+        bookInterview={bookInterview}
       />
     )
   });

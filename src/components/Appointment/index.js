@@ -13,10 +13,21 @@ export default function Appointment(props) {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
+  const SAVING = "SAVING";
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
+
+  // Called when we save the form. This changes the state variable at the application level.
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+    transition(SAVING);
+    props.bookInterview(props.id, interview);
+  };
 
   return (
     <article className="appointment">
@@ -28,7 +39,7 @@ export default function Appointment(props) {
           interviewer={props.interview.interviewer.name}
         />
       )}
-      {mode === CREATE && <Form interviewers={props.interviewers} onCancel={back}/>}
+      {mode === CREATE && <Form interviewers={props.interviewers} onCancel={back} onSave={save}/>}
     </article>
   );
 };
