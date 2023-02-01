@@ -34,9 +34,26 @@ export default function Application(props) {
       [id]: appointment
     };
     return axios.put(`/api/appointments/${id}`, { ...appointment })
+    .then(() => 
+      setState({ ...state, appointments }))
+    .catch((response) => {
+      console.log('There was an error saving the interview: ', response);
+    })
+  };
+
+  function cancelInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    return axios.delete(`/api/appointments/${id}`)
     .then(() => setState({ ...state, appointments }))
     .catch((response) => {
-      console.log('There was an error with the put request: ', response);
+      console.log('There was an error deleting the interview: ', response);
     })
   };
 
@@ -56,6 +73,7 @@ export default function Application(props) {
         interview={interview}
         interviewers={dailyInterviewers}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     )
   });
