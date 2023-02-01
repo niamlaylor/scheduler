@@ -40,6 +40,7 @@ export default function Form(props) {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button onClick={cancel} danger>Cancel</Button>
+          {/* Clicking Save updates the student and interviewer state and passes it up to the application state */}
           <Button onClick={() => props.onSave(student, interviewer)} confirm>Save</Button>
         </section>
       </section>
