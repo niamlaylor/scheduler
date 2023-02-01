@@ -36,9 +36,6 @@ export default function Application(props) {
     return axios.put(`/api/appointments/${id}`, { ...appointment })
     .then(() => 
       setState({ ...state, appointments }))
-    .catch((response) => {
-      console.log('There was an error saving the interview: ', response);
-    })
   };
 
   function cancelInterview(id, interview) {
@@ -52,9 +49,6 @@ export default function Application(props) {
     };
     return axios.delete(`/api/appointments/${id}`)
     .then(() => setState({ ...state, appointments }))
-    .catch((response) => {
-      console.log('There was an error deleting the interview: ', response);
-    })
   };
 
   // This is our list of appointments for the current day in state
