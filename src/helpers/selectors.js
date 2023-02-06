@@ -1,6 +1,6 @@
 export function getAppointmentsForDay(state, day) {
 
-  const appointments = [];
+  let appointments = [];
 
   if (state.days.length === 0) {
     return appointments;
@@ -24,7 +24,7 @@ export function getAppointmentsForDay(state, day) {
 
 export function getInterviewersForDay(state, day) {
 
-  const interviewers = [];
+  let interviewers = [];
 
   if (state.days.length === 0) {
     return interviewers;
@@ -68,3 +68,11 @@ export function getInterview(state, interview) {
 //     "avatar": "https://i.imgur.com/LpaY82x.png"
 //   }
 // }
+
+export function getAppointmentDay(state, id) {
+  for (const day of state.days) {
+    if (day.appointments.includes(id)) {
+      return day;
+    };
+  };
+};
