@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { getAppointmentDay } from 'helpers/selectors';
+import { getAppointmentDay, getNewSpotCount, getNullAppointments } from 'helpers/selectors';
 
 export default function useApplicationData() {
   
@@ -30,19 +30,11 @@ export default function useApplicationData() {
       [id]: appointment
     };
     const bookedDay = getAppointmentDay(state, id);
-    const days = state.days.map((d) => {
-      if (d.name === bookedDay.name) {
-        d.spots -= 1;
-        return d;
-      } else {
-        return d;
-      };
-    });
+    const days = getNewSpotCount(state, bookedDay, true);
 
     return axios.put(`/api/appointments/${id}`, { ...appointment })
     .then(() => 
       setState({ ...state, appointments, days }))
-    .then(() => console.log(state))
   };
 
   const cancelInterview = (id) => {
@@ -54,8 +46,11 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
+    const cancelledDay = getAppointmentDay(state, id);
+    const days = getNewSpotCount(state, cancelledDay, false);
+
     return axios.delete(`/api/appointments/${id}`)
-    .then(() => setState({ ...state, appointments }))
+    .then(() => setState({ ...state, appointments, days }))
   };
 
   useEffect(() => {
