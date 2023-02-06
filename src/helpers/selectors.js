@@ -69,7 +69,7 @@ export function getInterview(state, interview) {
 //   }
 // }
 
-export default function getAppointmentDay(state, id) {
+export function getAppointmentDay(state, id) {
   for (const day of state.days) {
     if (day.appointments.includes(id)) {
       return day;
@@ -78,7 +78,7 @@ export default function getAppointmentDay(state, id) {
 };
 
 // We use this helper in getNewSpotCount below
-export default function getNullAppointments(state, day) {
+const getNullAppointments = (state, day) => {
   let nullCount = 0;
   for (const appointment of day.appointments) {
     const stateAppointment = state.appointments[appointment].interview;
@@ -88,7 +88,7 @@ export default function getNullAppointments(state, day) {
   } return nullCount;
 };
 
-export default function getNewSpotCount(state, selectedDay, booking) {
+export function getNewSpotCount(state, selectedDay, booking) {
   const days = state.days.map((d) => {
     // We set booking to true if using the bookInterview function or false for cancelInterview
     if (d.id === selectedDay.id && booking) {
