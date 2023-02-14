@@ -9,7 +9,7 @@ Your trusty companion for booking interviews!
 - Database: PostgreSQL
 - Testing: Storybook, Jest and Cypress
 
-![Home page](./docs/home-screen.png "Creating a new appointment in Interview Scheduler")
+![Interview Scheduler Home Screen](https://raw.githubusercontent.com/niamlaylor/scheduler/master/docs/home-screen.png "Creating a new appointment in Interview Scheduler")
 
 ## Setup
 
