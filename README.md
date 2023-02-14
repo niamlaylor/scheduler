@@ -2,11 +2,13 @@
 
 Your trusty companion for booking interviews!
 
+Start using the app: https://liam-scheduler.netlify.app/
+
 ## Stack
 
 - Frontend: React
 - Backend: Express
-- Database: PostgreSQL
+- Database: PostgreSQL - hosted on Railway
 - Testing: Storybook, Jest and Cypress
 
 ![Interview Scheduler Home Screen](https://raw.githubusercontent.com/niamlaylor/scheduler/master/docs/home-screen.png "Creating a new appointment in Interview Scheduler")
@@ -49,3 +51,8 @@ curl http://localhost:8001/api/debug/reset
 ```sh
 npm run cypress
 ```
+
+## API endpoints
+- Appointments: https://scheduler-api-production-e37e.up.railway.app/api/appointments
+- Days: https://scheduler-api-production-e37e.up.railway.app/api/days
+- Interviewers: https://scheduler-api-production-e37e.up.railway.app/api/interviewers
