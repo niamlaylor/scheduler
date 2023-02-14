@@ -19,7 +19,7 @@
     "build-storybook": "build-storybook -s public",
     "cypress": "cypress open -P ."
   },
-  "proxy": "http://localhost:8001",
+  "proxy": "https://scheduler-api-production-e37e.up.railway.app",
   "browserslist": {
     "production": [
       ">0.2%",
