@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { getAppointmentDay, getNewSpotCount } from 'helpers/selectors';
+axios.defaults.baseURL = 'https://scheduler-api-production-e37e.up.railway.app';
 
 export default function useApplicationData() {
   
