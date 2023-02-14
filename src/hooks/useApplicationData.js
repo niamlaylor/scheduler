@@ -21,10 +21,12 @@ export default function useApplicationData() {
   them to save() as arguments, which then updates state at the application level.
   */
   const bookInterview = (id, interview) => {
+    // Create new appointment with the interview details replacing the null value
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
     };
+    // Replace the entire appointments object with the created appointment replaced
     const appointments = {
       ...state.appointments,
       [id]: appointment
@@ -38,10 +40,12 @@ export default function useApplicationData() {
   };
 
   const cancelInterview = (id) => {
+    // Create new appointment with the interview = null
     const appointment = {
       ...state.appointments[id],
       interview: null
     };
+    // Replace the entire appointments object with the deleted appointment replaced
     const appointments = {
       ...state.appointments,
       [id]: appointment
@@ -50,7 +54,7 @@ export default function useApplicationData() {
     const days = getNewSpotCount(state, cancelledDay, false);
 
     return axios.delete(`/api/appointments/${id}`)
-    .then(() => setState({ ...state, appointments, days }))
+    .then(() => setState({ ...state, appointments, days }));
   };
 
   useEffect(() => {
