@@ -35,15 +35,17 @@ npm run storybook
 
 ## Running Cypress Visual Testbed
 
-1. Run API server in test mode:
+1. Clone the scheduler-api repo: https://github.com/lighthouse-labs/scheduler-api 
+
+2. Run API server in test mode:
 ```
 npm run test:server
 ```
-2. Send a GET request to reset the DB:
+3. Send a GET request to reset the DB:
 ```sh
 curl http://localhost:8001/api/debug/reset
 ```
-3. Run Cypress:
+4. Run Cypress:
 ```sh
 npm run cypress
 ```
