@@ -54,6 +54,10 @@ const fixtures = {
 };
 
 export default {
+  defaults: {
+    baseURL: 'https://scheduler-api-production-e37e.up.railway.app'
+  },
+
   get: jest.fn(url => {
     if (url === "/api/days") {
       return Promise.resolve({
