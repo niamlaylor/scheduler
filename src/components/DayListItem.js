@@ -1,19 +1,20 @@
 import React from "react";
-import classNames from "classnames";
+import classnames from "classnames";
 
 import "components/DayListItem.scss";
 
 export default function DayListItem(props) {
 
-  let dayClass = '';
-  if (props.selected) {
-    dayClass = '--selected';
-  };
-  if (props.spots === 0) {
-    dayClass = '--full';
-  };
+  // let dayClass = '';
+  // if (props.selected) {
+  //   dayClass = '--selected';
+  // };
+  // if (props.spots === 0) {
+  //   dayClass = '--full';
+  // };
 
-  let dayListClass = classNames(`day-list__item${dayClass}`);
+  // let dayListClass = classNames(`day-list__item${dayClass}`);
+  let dayListClass = classnames(`day-list__item`, { '--selected': props.selected}, {'--full': props.spots === 0}).split(' ').join('');
 
   return (
     <li data-testid="day" className={dayListClass} onClick={() => props.setDay(props.name)}>

@@ -31,6 +31,15 @@
         background-color: darken($white, 5%);
         cursor: pointer;
       }
+      &--full {
+        background-color: #ee5253;
+        color: $dark-background;
+        height: 5rem;
+        padding-left: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
     }
 
     &--full {
