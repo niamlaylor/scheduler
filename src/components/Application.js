@@ -19,7 +19,6 @@ export default function Application(props) {
   // This is our list of interviewers for the current day in state
   const dailyInterviewers = getInterviewersForDay(state, state.day);
 
-  // schedule is an array of Appointment components to render below
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     return (
