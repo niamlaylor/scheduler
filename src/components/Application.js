@@ -4,9 +4,6 @@ import DayList from "./DayList";
 import Appointment from "./Appointment";
 import { getAppointmentsForDay, getInterviewersForDay, getInterview } from "helpers/selectors";
 import useApplicationData from "hooks/useApplicationData";
-import axios from "axios";
-axios.defaults.baseURL = 'https://scheduler-api-production-e37e.up.railway.app';
-
 
 export default function Application(props) {
 

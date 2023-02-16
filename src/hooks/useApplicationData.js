@@ -32,7 +32,13 @@ export default function useApplicationData() {
       [id]: appointment
     };
     const bookedDay = getAppointmentDay(state, id);
-    const days = getNewSpotCount(state, bookedDay, true);
+
+    let days;
+    if (state.appointments[id].interview) {
+      days = getNewSpotCount(state, bookedDay, 'edit');
+    } else {
+      days = getNewSpotCount(state, bookedDay, 'book');
+    }
 
     return axios.put(`/api/appointments/${id}`, { ...appointment })
     .then(() => 
@@ -51,7 +57,7 @@ export default function useApplicationData() {
       [id]: appointment
     };
     const cancelledDay = getAppointmentDay(state, id);
-    const days = getNewSpotCount(state, cancelledDay, false);
+    const days = getNewSpotCount(state, cancelledDay, 'cancel');
 
     return axios.delete(`/api/appointments/${id}`)
     .then(() => setState({ ...state, appointments, days }));

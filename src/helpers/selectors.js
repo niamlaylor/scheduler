@@ -88,14 +88,17 @@ const getNullAppointments = (state, day) => {
   } return nullCount;
 };
 
-export function getNewSpotCount(state, selectedDay, booking) {
+export function getNewSpotCount(state, selectedDay, operation) {
   const days = state.days.map((d) => {
     // We set booking to true if using the bookInterview function or false for cancelInterview
-    if (d.id === selectedDay.id && booking) {
+    if (d.id === selectedDay.id && operation === 'book') {
       d = {...d, spots: getNullAppointments(state, selectedDay) - 1};
       return d;
-    } else if (d.id === selectedDay.id && !booking) {
+    } else if (d.id === selectedDay.id && operation === 'cancel') {
       d = {...d, spots: getNullAppointments(state, selectedDay) + 1};
+      return d;
+    } else if (d.id === selectedDay.id && operation === 'edit') {
+      d = {...d, spots: getNullAppointments(state, selectedDay)};
       return d;
     } else {
       return d;
